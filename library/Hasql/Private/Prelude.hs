@@ -1,3 +1,4 @@
+{-# LANGUAGE CPP #-}
 module Hasql.Private.Prelude
 (
   module Exports,
@@ -16,7 +17,11 @@ where
 
 -- base-prelude
 -------------------------
+#if !MIN_VERSION_base(4,10,0)
 import BasePrelude as Exports hiding (assert, left, right, isLeft, isRight, error, (<>), First(..), Last(..), new)
+#else
+import BasePrelude as Exports hiding (assert, left, right, isLeft, isRight, fromLeft, fromRight, error, (<>), First(..), Last(..), new)
+#endif
 
 -- transformers
 -------------------------
